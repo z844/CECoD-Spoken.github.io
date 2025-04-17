@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Empathetic Spoken Conversation by Cascading Text and Speech LLMs with Speech Emotion Caption</title>
+		<link type="text/css" href="./css/basic.css" rel="stylesheet">
+		<link type="text/css" href="./css/index.css" rel="stylesheet">
+		<link type="text/css" href="./css/bootstrap.min.css" rel="stylesheet">
+		<script type='text/javascript' src="./js/jquery-3.3.1.min.js"></script>
+		<script type='text/javascript' src="./js/index.js"></script>
+	</head>
+	<body>
+		<div class="main">
+			<div class="title">
+				<img class="top-img" src="img/background.png" />
+				<span>Leveraging Conversational Emotional Chain-of-Decoding Towards Empathetic Spoken Dialogue</span>
+			</div>
+			<div class="content">
+				<div class="section author"></div>
+				<div class="section">
+					<div class="section-title">ABSTRACT</div>
+					<div class="section-content abstract">
+						Spoken dialogue (SD), which involves generating empathetic responses during human-machine conversations (HMC), is becoming increasingly prevalent. As speech is the most natural form of HMC, state-of-the-art SD systems aim to integrate speech modalities into the SD process to develop agents capable of listening, understanding, and interacting effectively.
+However, current methods often lack a comprehensive understanding of the multimodal dialogue context, leading to limited empathy in both the generated responses and synthesized speech.
+To address this limitation, we propose \textbf{CECoD-Spoken}, a Conversational Emotional Chain-of-Decoding (CECoD) driven architecture implementing hierarchical empathetic reasoning through five cognitive phases: 1) Dialogue Emotional Clues Understanding, 2) Response Text Generation, 3) Response Speech Utterance-Level Empathetic Understanding, 4) Response Speech Word-Level Empathetic Understanding, and 5) Response Speech Rendering. 
+Through this architecture, the system progressively refines understanding from dialogue-level empathy to utterance-specific emotional resonance.
+Extensive experiments show that the proposed CECoD-Spoken significantly enhances the empathy of textual responses and the emotional expressiveness of generated speech, providing an innovative solution for developing intelligent, human-centric, emotion-driven dialogue systems.</span></a>.
+					</div>
+				</div>
+
+				<div class="section">
+					<div class="section-title">MODEL ARCHITECTURE</div>
+					<div class="section-content model" style="text-align: center;">
+						<img src="./img/11.png" alt="" class="model-img" style="width: 60%;">
+
+						<p style="padding-top: 1rem; color: #a1a1a1; font-size: 1rem; text-align: center;">The overview of CECoD-Spoken. Dialogue Semantics-Emotion Tokenization seeks to obtain the discrete representation for given dialogue history. Spoken Dialogue LLM is treated as the dialogue backbone. CECoD Driven Response Generation aims to predict the response text and speech, in a serialized manner, by leveraging the novel Conversational Emotional Chain of Decoding</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="section">
+				<div class="section-title">EXPERIMENTS</div>
+				<div class="section-content experiments">
+					<!-- We develop four neural TTS systems for a  -->
+					<strong>Comparative Experiment:</strong>
+					</br> 1) <b>Text-Only</b> We select Llama 3-8B-chinese-chat as the standard base model, serving as a performance reference system. In this baseline, only the Spoken Dialog text is input, and the output consists of response text and its corresponding caption.  
+					</br> 2) <b>ParalinGPT</b> The core idea of ParalinGPT is to sequentially infer the emotional labels of the previous dialog history, the emotional label of the reply text, and then generate the reply text based on this information. <a href="https://arxiv.org/abs/2312.15316" style="color: #1d5da4;">[PAPER]</a>
+					</br> 3) <b>Spoken-LLM</b> Spoken-LLM integrates a widely used open-source Llama 2-Chat with emotion2vec. This model can predict speaker style attributes and response text, enabling downstream expressive TTS models to generate natural and diverse voice responses. <a href="https://arxiv.org/abs/2402.12786" style="color: #1d5da4;">[PAPER]</a>
+					</br> 4) <b>PerceptiveAgent</b> PerceptiveAgent introduces speech captions to assist with response text prediction. However, these speech captions only contain basic acoustic information such as pitch and energy.  <a href="https://arxiv.org/abs/2406.12707" style="color: #1d5da4;">[PAPER]</a>
+				</br>
+				    </br> To facilitate the generation of comparative audio experiments, we used the same ground truth text combined with respective emotional captions or emotion labels to generate audio through CosyVoice. This approach ensures consistent input conditions for the comparative experiments, making it easier to evaluate the differences in emotional expression across models.
+				</div>
+			</div>	
+
+			<div class="section-content ">
+
+				<hr/>
+
+				<div class="subsection-exp-2">
+
+					<!-- 一句话分割 -->
+					<div class="module-content">
+						<div class="chat-container" style="width: 50%;">
+							<b>Predict the reply and caption of the last sentence through the following conversation history</b>
+							<hr />
+							<div class="message your-message">
+								<div class="message-content">
+									<p>我听说市区最近要进行交通建设，你知道具体是什么项目吗？</p>
+								</div>
+							</div>
+							<div class="message my-message">
+								<div class="message-content">
+									<p>是的，最近市政府计划修建一条地铁线路，以缓解交通拥堵问题。</p>
+								</div>
+							</div>
+							<div class="message your-message">
+								<div class="message-content">
+									<p>那真是太好了呢。地铁能够提供更方便的交通方式，减少私家车出行，对环境也有好处呢。</p>
+								</div>
+							</div>
+							<div class="message my-message">
+								<div class="message-content">
+									<p>没错，地铁建设不仅能够方便市民出行，还能减少道路上车辆数量，以降低交通事故发生率。嗯。</p>
+								</div>
+							</div>
+							<div class="message your-message">
+								<div class="message-content">
+									<p>不过我担心修建地铁会给周边居民带来噪音和成都扰民的问题，这个问题有没有被考虑到啊？</p>
+								</div>
+							</div>
+							<div class="message my-message">
+								<div class="message-content">
+									<p>市政府已经考虑到这个问题了，他们会采取相应的措施，以减少施工对周边居民的影响。</p>
+								</div>
+							</div>
+							<div class="message your-message">
+								<div class="message-content">
+									<p>嗯，那就好，我希望地铁的建设能够顺利进行，尽快为市民提供更好的出行条件呢。</p>
+								</div>
+							</div>
+							<div class="message my-message">
+								<div class="message-content">
+									<p>......</p>
+								</div>
+							</div>
+						</div>
+						<div id="table_4" style="text-align: center;">
+							<table>
+								<thead>
+									<colgroup>
+									<col width=20%></col>
+									<col width=30%></col>
+									<col width=30%></col>
+							
+									</colgroup>
+									<tr>
+									<th colspan="1" style="text-align: center"><strong>Comparative</strong></th>
+									<th colspan="1" style="text-align: center"><strong>Predicted Response</strong></th>
+									<th colspan="1" style="text-align: center"><strong>Caption</strong></th>
+							
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td style="text-align: center">Ground Truth</td>
+										<td style="text-align: center">我也是这样希望的。交通建设对城市发展和居民生活质量提升都起到了重要作用。</td>
+										<td style="text-align: center">这位女性声音洪亮有力，语速适中，充满热情。她的语气积极向上，表达了对交通建设的高度支持和满怀期待的情感。</td>
+									
+									</tr>
+									<tr>
+										<td style="text-align: center">CECoD-Spoken</td>
+										<td style="text-align: center">嗯，我完全同意，这对我们每个人来说都会有好处。我希望市政府能够在实施过程中注重细节，确保一切顺利。</td>
+										<td style="text-align: center">一位女性以坚定的声音回应，音高和音量适中，语速适中，情感中带着对未来发展的希望。</td>
+										
+									</tr>
+									<tr>
+										<td style="text-align: center">Text-Only</td>
+										<td style="text-align: center">我觉得这种虚拟的成功和荣誉都没有实际价值，不如在现实世界里做点什么实事。</td>
+										<td style="text-align: center">这位女孩的声音温柔且稳重，语速适中，语调中带有一种深思熟虑的意味，令人觉得她的观点深刻而有说服力</td>
+								
+									</tr>
+									<tr>
+										<td style="text-align: center">ParalinGPT</td>
+										<td style="text-align: center">确实，各有各的观点，我们可以通过交流来了解彼此的想法，不必强迫自己去接受对方的看法。</td>
+										<td style="text-align: center"><消极></td>
+									
+									</tr>
+									<tr>
+										<td style="text-align: center">Spoken-LLM</td>
+										<td style="text-align: center">当然，通过教育来预防交通事故，远比处理事故后的后果要好得多。我们应该共同努力，让我们的道路更加安全，减少伤亡的发生。</td>
+										<td style="text-align: center"><中立></td>
+									</tr>
+									<tr>
+										<td style="text-align: center">PerceptiveAgent</td>
+										<td style="text-align: center">确实希望能这么做，毕竟我们都在这座城市里生活和工作，一个好的公共交通系统对于城市居民来说是多么重要！</td>
+										<td style="text-align: center">女性的声音,音高较强，语速适中，语气中透着好奇和疑问，仿佛在探索未知却带着几分谨慎思考</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div>
+						<table style="width: 100%;">
+							<thead>
+								<colgroup>
+									<col width=20%></col>
+									<col width=20%></col>
+									<col width=20%></col>
+									<col width=20%></col>
+									<col width=20%></col>
+								</colgroup>
+								<tr>
+								<th colspan="1" style="text-align: center"><strong>Ground Truth</strong></th>
+								<th colspan="1" style="text-align: center"><strong>CECoD-Spoken</strong></th>
+								<th colspan="1" style="text-align: center"><strong>Text-Only</strong></th>
+								<th colspan="1" style="text-align: center"><strong>ParalinGPT</strong></th>
+								<th colspan="1" style="text-align: center"><strong>Spoken-LLM</strong></th>
+								</tr>
+								<tr>
+									<td colspan="1" style="text-align: center"><audio src="./audio/web/truth1.wav" controls="" preload=""></audio></td>
+									<td colspan="1" style="text-align: center"><audio src="./audio/web/our1.wav" controls="" preload=""></audio></td>
+									<td colspan="1" style="text-align: center"><audio src="./audio/web/base1.wav" controls="" preload=""></audio></td>
+									<td colspan="1" style="text-align: center"><audio src="./audio/web/para.wav" controls="" preload=""></audio></td>
+									<td colspan="1" style="text-align: center"><audio src="./audio/web/spoken.wav" controls="" preload=""></audio></td>
+								</tr>
+							</thead>
+						</table>
+					</div>
+
+					<hr />
+
+					<hr />
+					<div class="module-content">
+						<div class="chat-container" style="width: 50%;">
+							<b>Predict the reply and caption of the last sentence through the following conversation history</b>
+							<hr />
+							<div class="message your-message">
+								<div class="message-content">
+									<p>我真的很生气，我们的旅游体验太糟糕了。</p>
+								</div>
+							</div>
+							<div class="message my-message">
+								<div class="message-content">
+									<p>是吗？怎么了？</p>
+								</div>
+							</div>
+							<div class="message your-message">
+								<div class="message-content">
+									<p>我们一定的酒店糟糕透了，设施陈旧，服务态度还差。</p>
+								</div>
+							</div>
+							<div class="message my-message">
+								<div class="message-content">
+									<p>真的吗？我也没有想到这么糟糕。</p>
+								</div>
+							</div>
+							<div class="message your-message">
+								<div class="message-content">
+									<p>而且今年导游也不专业，讲解简单粗暴，一点也不耐心啊。</p>
+								</div>
+							</div>
+							<div class="message my-message">
+								<div class="message-content">
+									<p>这真的让人失望，我们花这么多的钱，希望能够得到更好的服务和体验。</p>
+								</div>
+							</div>
+							<div class="message your-message">
+								<div class="message-content">
+									<p>没错，我觉得我们应该向旅行社投诉，要求他们给我们一个解决方案。</p>
+								</div>
+							</div>
+							<div class="message my-message">
+								<div class="message-content">
+									<p>嗯，你说的对我不该忍受这样的糟糕体验，应该让他们知道我我们的不满。</p>
+								</div>
+							</div>
+							<div class="message your-message">
+								<div class="message-content">
+									<p>一定要让他们意识到他们的问题，以后不要再让其他人也受到这样的伤害了。</p>
+								</div>
+							</div>
+							<div class="message my-message">
+								<div class="message-content">
+									<p>......</p>
+								</div>
+							</div>
+						</div>
+						<div id="table_4" style="text-align: center;">
+							<table>
+								<thead>
+									<colgroup>
+									<col width=20%></col>
+									<col width=30%></col>
+									<col width=30%></col>
+									</colgroup>
+									<tr>
+									<th colspan="1" style="text-align: center"><strong>Comparative</strong></th>
+									<th colspan="1" style="text-align: center"><strong>Predicted Response</strong></th>
+									<th colspan="1" style="text-align: center"><strong>Caption/Laber</strong></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td style="text-align: center">Ground Truth</td>
+										<td style="text-align: center">我们可以写封信投诉，详细描述我们的遭遇，希望他们给予合理的解决方案。</td>
+										<td style="text-align: center">这位男性声音音高适中，语速较快，情绪充满激动与愤怒，语气中流露出怒不可遏的强烈情感，富有强烈的感染力。</td>
+									</tr>
+									<tr>
+										<td style="text-align: center">CECoD-Spoken</td>
+										<td style="text-align: center">嗯，我理解你的不满，我们应该共同努力，要求旅行社给我们一个满意的解释和补偿。</td>
+										<td style="text-align: center">这位男性以坚定而温和的语调，音量适中，语速较快，表现出同情和理解，和对问题的积极态度。</td>
+									</tr>
+									<tr>
+										<td style="text-align: center">Text-Only</td>
+										<td style="text-align: center">我真的很抱歉，没想到你会这么失望，我会加倍努力的。</td>
+										<td style="text-align: center">语气中透露着内心的不满和不屑，夹杂着一丝无奈。</td>
+									</tr>
+									<tr>
+										<td style="text-align: center">ParalinGPT</td>
+										<td style="text-align: center">嗯，你说的有道理。</td>
+										<td style="text-align: center"><消极></td>
+									</tr>
+									<tr>
+										<td style="text-align: center">Spoken-LLM</td>
+										<td style="text-align: center">当然，我已经向旅行社发邮件了，希望他们能够给我们一个公正的解释和合理的补偿。</td>
+										<td style="text-align: center"><生气/angry></td>
+									</tr>
+									<tr>
+										<td style="text-align: center">PerceptiveAgent</td>
+										<td style="text-align: center">好的，我们要团结起来，面对困难。</td>
+										<td style="text-align: center">一位男性的声音，音调沉稳而充满力量，语速适中，语气中透露出坚定的信念与领导力，让人感到稳重而坚定，充满力量与支持。</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div>
+						<table style="width: 100%;">
+							<thead>
+								<colgroup>
+									<col width=20%></col>
+									<col width=20%></col>
+									<col width=20%></col>
+									<col width=20%></col>
+									<col width=20%></col>
+								</colgroup>
+								<tr>
+								<th colspan="1" style="text-align: center"><strong>Ground Truth</strong></th>
+								<th colspan="1" style="text-align: center"><strong>CECoD-Spoken</strong></th>
+								<th colspan="1" style="text-align: center"><strong>Text-Only</strong></th>
+								<th colspan="1" style="text-align: center"><strong>ParalinGPT</strong></th>
+								<th colspan="1" style="text-align: center"><strong>Spoken-LLM</strong></th>
+								</tr>
+								<tr>
+									<td colspan="1" style="text-align: center"><audio src="./audio/web/truth2.wav" controls="" preload=""></audio></td>
+									<td colspan="1" style="text-align: center"><audio src="./audio/web/our2.wav" controls="" preload=""></audio></td>
+									<td colspan="1" style="text-align: center"><audio src="./audio/web/base2.wav" controls="" preload=""></audio></td>
+									<td colspan="1" style="text-align: center"><audio src="./audio/web/para2.wav" controls="" preload=""></audio></td>
+									<td colspan="1" style="text-align: center"><audio src="./audio/web/spoken2.wav" controls="" preload=""></audio></td>
+								</tr>
+							</thead>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
