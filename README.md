@@ -33,6 +33,7 @@ Please download the above model file to the CECoD-Spoken/model folder.
 
 ### Step 3 : Running
 Please place the input audio file in the CECoD-Spoken/data/input folder.The output results are located in the CECoD-Spoken/data/output_audio folder.
+
     ```
     cd CECoD-Spoken
     sh run_pipeline.sh
