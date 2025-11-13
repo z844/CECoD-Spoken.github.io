@@ -19,7 +19,6 @@ CECoD-Spoken/model/
 | LLM       | Llama3-8B-Chinese-Chat    | [https://huggingface.co/shenzhi-wang/Llama3-8B-Chinese-Chat](https://huggingface.co/shenzhi-wang/Llama3-8B-Chinese-Chat)                                                                                                                 |
 | LLM LoRA  | CECoD-Spoken LoRA Weights | [https://z844.github.io/CECoD-Spoken.github.io/](https://z844.github.io/CECoD-Spoken.github.io/)                                                                                                                                         |
 | TTS       | CosyVoice2-0.5B           | [https://www.modelscope.cn/studios/iic/CosyVoice2-0.5B](https://www.modelscope.cn/studios/iic/CosyVoice2-0.5B)                                                                                                                           |
-| ASR       | Paraformer-zh             | [https://www.modelscope.cn/models/damo/speech_paraformer-large-vad-punc_asr_nat-zh-cn-16k-common-vocab8404-pytorch/](https://www.modelscope.cn/models/damo/speech_paraformer-large-vad-punc_asr_nat-zh-cn-16k-common-vocab8404-pytorch/) |
 
 ---
 
@@ -35,6 +34,9 @@ CECoD-Spoken/model/
 
 3. Prepare Cosyvoice env
     ```
+    git clone --recursive https://github.com/FunAudioLLM/CosyVoice.git
+    cd CosyVoice
+    git submodule update --init --recursive
     conda create -n cosyvoice -y python=3.10
     conda activate cosyvoice
     pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/ --trusted-host=mirrors.aliyun.com
