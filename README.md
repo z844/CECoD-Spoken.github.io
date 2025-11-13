@@ -6,12 +6,22 @@ Our code and data are being continuously updated. You can view the demo page thr
 
 ## Running
 
-### Step 1 : Download Model and LoRa weight
-You can download the LLM model [here](https://huggingface.co/shenzhi-wang/Llama3-8B-Chinese-Chat).
-You can download the LoRa weight file for the model [here](https://z844.github.io/CECoD-Spoken.github.io/).
-You can download the Cosyvoice2 model [here](https://www.modelscope.cn/studios/iic/CosyVoice2-0.5B).
-You can download the ASR model paraformer-zh[here](https://www.modelscope.cn/models/damo/speech_paraformer-large-vad-punc_asr_nat-zh-cn-16k-common-vocab8404-pytorch/summary).
-Please download the above model file to the CECoD-Spoken/model folder.
+### Step 1 : Download Required Models
+
+Download the following models into:
+
+```
+CECoD-Spoken/model/
+```
+
+| Component | Model Name                | Source                                                                                                                                                                                                                                   |
+| --------- | ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| LLM       | Llama3-8B-Chinese-Chat    | [https://huggingface.co/shenzhi-wang/Llama3-8B-Chinese-Chat](https://huggingface.co/shenzhi-wang/Llama3-8B-Chinese-Chat)                                                                                                                 |
+| LLM LoRA  | CECoD-Spoken LoRA Weights | [https://z844.github.io/CECoD-Spoken.github.io/](https://z844.github.io/CECoD-Spoken.github.io/)                                                                                                                                         |
+| TTS       | CosyVoice2-0.5B           | [https://www.modelscope.cn/studios/iic/CosyVoice2-0.5B](https://www.modelscope.cn/studios/iic/CosyVoice2-0.5B)                                                                                                                           |
+| ASR       | Paraformer-zh             | [https://www.modelscope.cn/models/damo/speech_paraformer-large-vad-punc_asr_nat-zh-cn-16k-common-vocab8404-pytorch/](https://www.modelscope.cn/models/damo/speech_paraformer-large-vad-punc_asr_nat-zh-cn-16k-common-vocab8404-pytorch/) |
+
+---
 
 ### Step 2 : Environment Setup
 
