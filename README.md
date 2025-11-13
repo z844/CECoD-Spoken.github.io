@@ -27,7 +27,7 @@ CECoD-Spoken/model/
 
 1. Prepare SECap from [here](https://github.com/thuhcsi/SECap) (for Chinese emotion captioning).
 
-2. Create conda environment
+2. Create SECap conda environment
     ```
     conda env create -f ./requirements.yaml
     mv ./CECoD-Spoken/model2.py $your_SECap_dir
