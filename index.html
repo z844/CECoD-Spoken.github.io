@@ -47,6 +47,9 @@ Extensive experiments show that the proposed CECoD-Spoken significantly enhances
 					</br> 2) <b>ParalinGPT</b> The core idea of ParalinGPT is to sequentially infer the emotional labels of the previous dialog history, the emotional label of the reply text, and then generate the reply text based on this information. <a href="https://arxiv.org/abs/2312.15316" style="color: #1d5da4;">[PAPER]</a>
 					</br> 3) <b>Spoken-LLM</b> Spoken-LLM integrates a widely used open-source Llama 2-Chat with emotion2vec. This model can predict speaker style attributes and response text, enabling downstream expressive TTS models to generate natural and diverse voice responses. <a href="https://arxiv.org/abs/2402.12786" style="color: #1d5da4;">[PAPER]</a>
 					</br> 4) <b>PerceptiveAgent</b> PerceptiveAgent introduces speech captions to assist with response text prediction. However, these speech captions only contain basic acoustic information such as pitch and energy.  <a href="https://arxiv.org/abs/2406.12707" style="color: #1d5da4;">[PAPER]</a>
+					</br> 5) <b>OSUM-EChat</b> OSUM-EChat is an end-to-end empathetic spoken dialogue system that enhances empathy through an understanding-driven training framework. It employs a three-stage strategy that extends the capabilities of large speech understanding models to spoken dialogue tasks and adopts a linguistic–paralinguistic dual-thinking mechanism to integrate acoustic and linguistic cues for empathetic response generation. To comprehensively assess its reasoning ability, we evaluate both the CoT version, which explicitly incorporates intermediate paralinguistic reasoning steps, and the non-CoT version, which generates responses directly without such reasoning. <a href="https://arxiv.org/abs/2508.09600" style="color: #1d5da4;">[PAPER]</a>
+					</br> 6) <b>LaMA-Omni2</b> LaMA-Omni2 is an LLM-based real-time spoken dialogue system designed for high-quality speech interaction. Built upon the Qwen2.5 series, it integrates a speech encoder and an autoregressive streaming speech decoder, enabling seamless speech understanding and generation within a unified framework.  <a href="https://arxiv.org/abs/2505.02625" style="color: #1d5da4;">[PAPER]</a>
+					</br> 7) <b>Qwen2-Audio</b> Qwen2-Audio is an open-source, largescale audio–language foundation model that jointly encodes acoustic and linguistic information. It was explicitly optimized for speech emotion recognition through multi-task pre-training followed by supervised fine-tuning on affect-annotated corpora, thereby endowing it with robust paralinguistic understanding capabilities. <a href="https://arxiv.org/abs/2407.10759" style="color: #1d5da4;">[PAPER]</a>
 				</br>
 				    </br> To facilitate the generation of comparative audio experiments, we used the same ground truth text combined with respective emotional captions or emotion labels to generate audio through CosyVoice. This approach ensures consistent input conditions for the comparative experiments, making it easier to evaluate the differences in emotional expression across models.
 				</div>
@@ -60,7 +63,7 @@ Extensive experiments show that the proposed CECoD-Spoken significantly enhances
 
 					<!-- 一句话分割 -->
 					<div class="module-content">
-						<div class="chat-container" style="width: 50%;">
+						<div class="chat-container" style="width: 35%;">
 							<b>Predict the reply and caption of the last sentence through the following conversation history</b>
 							<hr />
 							<div class="message your-message">
@@ -143,9 +146,9 @@ Extensive experiments show that the proposed CECoD-Spoken significantly enhances
 							<table>
 								<thead>
 									<colgroup>
-									<col width=20%></col>
-									<col width=30%></col>
-									<col width=30%></col>
+									<col width=7%></col>
+									<col width=50%></col>
+									<col width=40%></col>
 							
 									</colgroup>
 									<tr>
@@ -212,6 +215,38 @@ Extensive experiments show that the proposed CECoD-Spoken significantly enhances
 											<br>The woman's voice was strong and clear, with a moderate pace, her tone carrying curiosity and doubt, as if exploring the unknown while being cautious in thinking.
 										</td>
 									</tr>
+									<tr>
+										<td style="text-align: center">OSUM-EChat (non-CoT Version) </td>
+										<td style="text-align: center">亲爱的，听你这么想地铁建设，真是让人感到温暖呢！希望你的期待能变成现实，让大家都享受到更便捷的出行方式～
+											<br>
+											Wow, it’s so nice to hear how much you care about the subway plans! Hope your wish comes true and travel gets easier for everyone.
+										</td>
+										<td style="text-align: center">N/A</td>
+									</tr>
+									<tr>
+										<td style="text-align: center">OSUM-EChat (CoT Version) </td>
+										<td style="text-align: center">听姐姐这么一说，感觉你对城市发展挺有想法的呢！地铁建设确实关系到大家的生活便利，能感受到你为市民着想的心情，真棒～
+											<br>
+											Sounds like you really care about city development! It’s great to see you thinking about what helps people’s daily lives.
+										</td>
+										<td style="text-align: center">N/A</td>
+									</tr>
+									<tr>
+										<td style="text-align: center">LLaMA-Omni2</td>
+										<td style="text-align: center">为了使城市交通更加便捷，可以采取以下措施：1. 扩建公共交通网络；2. 实施智能交通系统；3. 增加自行车道和步行设施；4. 优化道路设计与管理。
+											<br>
+											To make city transport smoother, we could: 1) expand public transit; 2) use smart traffic systems; 3) add bike lanes and walkways; 4) improve road design.
+										</td>
+										<td style="text-align: center">N/A</td>
+									</tr>
+									<tr>
+										<td style="text-align: center">Qwen2-Audio</td>
+										<td style="text-align: center">地铁建设不仅方便市民出行，还能减少车辆数量，降低交通事故发生率，可谓一举多得。
+											<br>
+											Building subways makes travel easier and cuts down on cars and accidents — truly a win-win.
+										</td>
+										<td style="text-align: center">N/A</td>
+									</tr>
 								</tbody>
 							</table>
 						</div>
@@ -220,11 +255,15 @@ Extensive experiments show that the proposed CECoD-Spoken significantly enhances
 						<table style="width: 100%;">
 							<thead>
 								<colgroup>
-									<col width=20%></col>
-									<col width=20%></col>
-									<col width=20%></col>
-									<col width=20%></col>
-									<col width=20%></col>
+									<col width=11.1%></col>
+									<col width=11.1%></col>
+									<col width=11.1%></col>
+									<col width=11.1%></col>
+									<col width=11.1%></col>
+									<col width=11.1%></col>
+									<col width=11.1%></col>
+									<col width=11.1%></col>
+									<col width=11.1%></col>
 								</colgroup>
 								<tr>
 								<th colspan="1" style="text-align: center"><strong>Ground Truth</strong></th>
@@ -232,6 +271,10 @@ Extensive experiments show that the proposed CECoD-Spoken significantly enhances
 								<th colspan="1" style="text-align: center"><strong>Text-Only</strong></th>
 								<th colspan="1" style="text-align: center"><strong>ParalinGPT</strong></th>
 								<th colspan="1" style="text-align: center"><strong>Spoken-LLM</strong></th>
+								<th colspan="1" style="text-align: center"><strong>OSUM-EChat (non-CoT Version)</strong></th>
+								<th colspan="1" style="text-align: center"><strong>OSUM-EChat (CoT Version)</strong></th>
+								<th colspan="1" style="text-align: center"><strong>LLaMA-Omni2</strong></th>
+								<th colspan="1" style="text-align: center"><strong>Qwen2-Audio</strong></th>
 								</tr>
 								<tr>
 									<td colspan="1" style="text-align: center"><audio src="./audio/web/truth1.wav" controls="" preload=""></audio></td>
@@ -239,6 +282,10 @@ Extensive experiments show that the proposed CECoD-Spoken significantly enhances
 									<td colspan="1" style="text-align: center"><audio src="./audio/web/base1.wav" controls="" preload=""></audio></td>
 									<td colspan="1" style="text-align: center"><audio src="./audio/web/para.wav" controls="" preload=""></audio></td>
 									<td colspan="1" style="text-align: center"><audio src="./audio/web/spoken.wav" controls="" preload=""></audio></td>
+									<td colspan="1" style="text-align: center"><audio src="./audio/web/1-nothink.wav" controls="" preload=""></audio></td>
+									<td colspan="1" style="text-align: center"><audio src="./audio/web/1-think.wav" controls="" preload=""></audio></td>
+									<td colspan="1" style="text-align: center"><audio src="./audio/web/1-omni.wav" controls="" preload=""></audio></td>
+									<td colspan="1" style="text-align: center"><audio src="./audio/web/1-qwen.wav" controls="" preload=""></audio></td>
 								</tr>
 							</thead>
 						</table>
@@ -248,7 +295,7 @@ Extensive experiments show that the proposed CECoD-Spoken significantly enhances
 
 					<hr />
 					<div class="module-content">
-						<div class="chat-container" style="width: 50%;">
+						<div class="chat-container" style="width: 35%;">
 							<b>Predict the reply and caption of the last sentence through the following conversation history</b>
 							<hr />
 							<div class="message your-message">
@@ -351,9 +398,9 @@ Extensive experiments show that the proposed CECoD-Spoken significantly enhances
 							<table>
 								<thead>
 									<colgroup>
-									<col width=20%></col>
-									<col width=30%></col>
-									<col width=30%></col>
+									<col width=7%></col>
+									<col width=50%></col>
+									<col width=40%></col>
 									</colgroup>
 									<tr>
 									<th colspan="1" style="text-align: center"><strong>Comparative</strong></th>
@@ -392,6 +439,40 @@ Extensive experiments show that the proposed CECoD-Spoken significantly enhances
 										<td style="text-align: center">好的，我们要团结起来，面对困难。<br>OK, we should unite and face the difficulties.</td>
 										<td style="text-align: center">一位男性的声音，音调沉稳而充满力量，语速适中，语气中透露出坚定的信念与领导力，让人感到稳重而坚定，充满力量与支持。<br>A male voice, with a stable and powerful pitch, a moderate speaking speed, and an attitude that reveals firm belief and leadership, makes people feel stable and determined, full of strength and support.</td>
 									</tr>
+									<tr>
+										<td style="text-align: center">OSUM-EChat (non-CoT Version) </td>
+										<td style="text-align: center">姐妹，听你这么说，感觉心情都变好了呢！遇到问题不慌张，还想着想办法解决，真的很棒～
+											<br>
+											Girl, hearing you say that really lifts my mood! You stay calm and find solutions — love that!
+										</td>
+										<td style="text-align: center">N/A</td>
+									</tr>
+									<tr>
+										<td style="text-align: center">OSUM-EChat (CoT Version) </td>
+										<td style="text-align: center">姐妹，听你这么说，心里也跟着难过呢。遇到这种事确实让人委屈，不过别担心，投诉是解决问题的一种方式，相信旅行社会给你一个合理的答复的～
+											<br>
+											Oh girl, that sounds really upsetting. It’s okay to feel that way, but don’t worry — filing a complaint is the right move. The agency should give you a fair answer.
+										</td>
+										<td style="text-align: center">N/A</td>
+									</tr>
+									<tr>
+										<td style="text-align: center">LLaMA-Omni2</td>
+										<td style="text-align: center">可以，您有权向旅行社投诉并要求赔偿。建议先与旅行社沟通解决；若无法达成一致，可向消费者协会或旅游管理部门投诉。
+											<br>
+											Yes, you can file a complaint and ask for compensation. Try talking to the agency first, or contact the consumer office if that doesn’t work.
+										</td>
+										<td style="text-align: center">N/A</td>
+									</tr>
+									<tr>
+										<td style="text-align: center">Qwen2-Audio</td>
+										<td style="text-align: center">我们一定会向旅行社投诉，让他们给我们一个合理的解决方案。
+											<br>
+											We’ll definitely report it to the agency and make sure they give us a proper solution.
+										</td>
+										<td style="text-align: center">愤怒
+											<br>anger
+										</td>
+									</tr>
 								</tbody>
 							</table>
 						</div>
@@ -400,11 +481,15 @@ Extensive experiments show that the proposed CECoD-Spoken significantly enhances
 						<table style="width: 100%;">
 							<thead>
 								<colgroup>
-									<col width=20%></col>
-									<col width=20%></col>
-									<col width=20%></col>
-									<col width=20%></col>
-									<col width=20%></col>
+									<col width=11.1%></col>
+									<col width=11.1%></col>
+									<col width=11.1%></col>
+									<col width=11.1%></col>
+									<col width=11.1%></col>
+									<col width=11.1%></col>
+									<col width=11.1%></col>
+									<col width=11.1%></col>
+									<col width=11.1%></col>
 								</colgroup>
 								<tr>
 								<th colspan="1" style="text-align: center"><strong>Ground Truth</strong></th>
@@ -412,6 +497,10 @@ Extensive experiments show that the proposed CECoD-Spoken significantly enhances
 								<th colspan="1" style="text-align: center"><strong>Text-Only</strong></th>
 								<th colspan="1" style="text-align: center"><strong>ParalinGPT</strong></th>
 								<th colspan="1" style="text-align: center"><strong>Spoken-LLM</strong></th>
+								<th colspan="1" style="text-align: center"><strong>OSUM-EChat (non-CoT Version)</strong></th>
+								<th colspan="1" style="text-align: center"><strong>OSUM-EChat (CoT Version)</strong></th>
+								<th colspan="1" style="text-align: center"><strong>LLaMA-Omni2</strong></th>
+								<th colspan="1" style="text-align: center"><strong>Qwen2-Audio</strong></th>
 								</tr>
 								<tr>
 									<td colspan="1" style="text-align: center"><audio src="./audio/web/truth2.wav" controls="" preload=""></audio></td>
@@ -419,6 +508,10 @@ Extensive experiments show that the proposed CECoD-Spoken significantly enhances
 									<td colspan="1" style="text-align: center"><audio src="./audio/web/base2.wav" controls="" preload=""></audio></td>
 									<td colspan="1" style="text-align: center"><audio src="./audio/web/para2.wav" controls="" preload=""></audio></td>
 									<td colspan="1" style="text-align: center"><audio src="./audio/web/spoken2.wav" controls="" preload=""></audio></td>
+									<td colspan="1" style="text-align: center"><audio src="./audio/web/2-nothink.wav" controls="" preload=""></audio></td>
+									<td colspan="1" style="text-align: center"><audio src="./audio/web/2-think.wav" controls="" preload=""></audio></td>
+									<td colspan="1" style="text-align: center"><audio src="./audio/web/2-omni.wav" controls="" preload=""></audio></td>
+									<td colspan="1" style="text-align: center"><audio src="./audio/web/2-qwen.wav" controls="" preload=""></audio></td>
 								</tr>
 							</thead>
 						</table>
