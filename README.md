@@ -26,13 +26,13 @@ CECoD-Spoken/model/
 
 1. Prepare SECap from [here](https://github.com/thuhcsi/SECap) (for Chinese emotion captioning).
 
-2. Create SECap conda environment
+Create SECap conda environment
     ```
     conda env create -f ./requirements.yaml
     mv ./CECoD-Spoken/model2.py $your_SECap_dir
     ```
 
-3. Prepare Cosyvoice env
+2. Prepare Cosyvoice env
     ```
     git clone --recursive https://github.com/FunAudioLLM/CosyVoice.git
     cd CosyVoice
